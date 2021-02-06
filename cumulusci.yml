@@ -1,0 +1,107 @@
+minimum_cumulusci_version: '3.19.1'
+project:
+    name: npsp-pmm
+    package:
+        name: PMM
+        api_version: '50.0'
+    dependencies:
+        - github: 'https://github.com/SalesforceFoundation/NPSP'
+    git:
+    source_format: sfdx
+
+sources:
+    npsp:
+        github: https://github.com/SalesforceFoundation/NPSP
+
+tasks:
+    robot:
+        options:
+            suites: robot/npns-pmm/tests
+            options:
+                outputdir: robot/npns-pmm/results
+
+    robot_testdoc:
+        options:
+            path: robot/npns-pmm/tests
+            output: robot/npns-pmm/doc/npns-pmm_tests.html
+
+    run_tests:
+        options:
+            required_org_code_coverage_percent: 75
+
+    generate_sf_accounts:
+        class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
+        options:
+            generator_yaml: yamlRecipes/Account.recipe.yml
+            num_records: 100
+            num_records_tablename: Account
+    generate_sf_contacts:
+        class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
+        options:
+            generator_yaml: yamlRecipes/salesforce/Contact.recipe.yml
+            num_records: 100
+            num_records_tablename: Contact
+    generate_sf_opportunities:
+        class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
+        options:
+            generator_yaml: yamlRecipes/salesforce/Opportunity.recipe.yml
+            num_records: 100
+            num_records_tablename: Opportunity
+    generate_npsp_accounts:
+        class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
+        options:
+            generator_yaml: yamlRecipes/Account_npsp.recipe.yml
+            num_records: 100
+            num_records_tablename: Account
+    generate_npsp_contacts:
+        class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
+        options:
+            generator_yaml: yamlRecipes/Contact_npsp.recipe.yml
+            num_records: 100
+            num_records_tablename: Contact
+    generate_npsp_opportunities:
+        class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
+        options:
+            generator_yaml: yamlRecipes/Opportunity_npsp.recipe.yml
+            num_records: 100
+            num_records_tablename: Opportunity
+    generate_opportunity_contact_roles:
+        class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
+        options:
+            generator_yaml: yamlRecipes/OpportunityContactRole.recipe.yml
+            num_records: 100
+            num_records_tablename: Opportunity
+    generate_opportunities_and_contacts:
+        class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
+        options:
+            generator_yaml: yamlRecipes/OpportunityAndContact.recipe.yml
+            num_records: 100
+            num_records_tablename: Opportunity
+
+flows:
+    test_everything:
+        steps:
+            1:
+                task: generate_sf_accounts
+            2:
+                task: generate_sf_contacts
+            3:
+                task: generate_sf_opportunities
+            4:
+                flow: npsp:install_prod
+            5:
+                task: generate_npsp_accounts
+            6:
+                task: generate_npsp_contacts
+            7:
+                task: generate_npsp_opportunities
+            8:
+                task: generate_opportunity_contact_roles
+            9:
+                task: generate_opportunities_and_contacts
+orgs:
+    scratch:
+        npsppmmscratch:
+            config_file: orgs/npsppmmscratch.json
+            days: 3
+            namespaced: True

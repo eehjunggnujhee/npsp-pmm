@@ -1,0 +1,422 @@
+# Accounts
+Account:
+    sf_object: Account
+    fields:
+        # Standard Fields
+        - RecordTypeId
+        - Name
+        - Description
+        - BillingStreet
+        - BillingCity
+        - BillingState
+        - BillingPostalCode
+        - BillingCountry
+        - ShippingStreet
+        - ShippingCity
+        - ShippingState
+        - ShippingPostalCode
+        - ShippingCountry
+        - Phone
+        - Fax
+        - Website
+        - NumberOfEmployees
+        - AccountNumber
+        - Site
+        - Type
+
+        # NPSP: System Fields
+        - npe01__SYSTEM_AccountType__c
+        - npo02__SYSTEM_CUSTOM_NAMING__c
+        - npe01__SYSTEMIsIndividual__c
+
+        # NPSP: Donation Information
+        - npo02__FirstCloseDate__c
+        - npo02__LastCloseDate__c
+        - npo02__AverageAmount__c
+        - npo02__LastOppAmount__c
+        - npo02__LargestAmount__c
+        - npo02__SmallestAmount__c
+        - npo02__Best_Gift_Year__c
+        - npo02__Best_Gift_Year_Total__c
+
+        # NPSP: Donation Totals
+        - npo02__TotalOppAmount__c
+        - npo02__OppAmountLastNDays__c
+        - npo02__OppAmountThisYear__c
+        - npo02__OppAmountLastYear__c
+        - npo02__OppAmount2YearsAgo__c
+        - npo02__NumberOfClosedOpps__c
+        - npo02__OppsClosedLastNDays__c
+        - npo02__OppsClosedThisYear__c
+        - npo02__OppsClosedLastYear__c
+        - npo02__OppsClosed2YearsAgo__c
+
+        # NPSP: Membership Information
+        - npo02__TotalMembershipOppAmount__c
+        - npo02__MembershipEndDate__c
+        - npo02__LastMembershipLevel__c
+        - npo02__MembershipJoinDate__c
+        - npo02__LastMembershipDate__c
+        - npo02__LastMembershipAmount__c
+        - npo02__LastMembershipOrigin__c
+        - npo02__NumberOfMembershipOpps__c
+
+# Contacts
+Contact:
+    sf_object: Contact
+    fields:
+        # Standard Fields
+        - Salutation
+        - FirstName
+        - LastName
+        - Email
+        - Phone
+        - MobilePhone
+        - OtherPhone
+        - HomePhone
+        - Title
+        - Birthdate
+        - MailingStreet
+        - MailingCity
+        - MailingState
+        - MailingPostalCode
+        - MailingCountry
+
+        # NPSP: npe01
+        - npe01__SystemAccountProcessor__c
+        - npe01__AlternateEmail__c
+        - npe01__HomeEmail__c
+        - npe01__Preferred_Email__c
+        - npe01__PreferredPhone__c
+        - npe01__Primary_Address_Type__c
+        - npe01__Private__c
+        - npe01__Secondary_Address_Type__c
+        - npe01__WorkEmail__c
+        - npe01__WorkPhone__c
+
+        # NPSP: npo02
+        - npo02__AverageAmount__c
+        - npo02__Best_Gift_Year__c
+        - npo02__Best_Gift_Year_Total__c
+        - npo02__FirstCloseDate__c
+        - npo02__Household__c
+        - npo02__Household_Naming_Order__c
+        - npo02__LargestAmount__c
+        - npo02__LastCloseDate__c
+        - npo02__LastMembershipAmount__c
+        - npo02__LastMembershipDate__c
+        - npo02__LastMembershipLevel__c
+        - npo02__LastMembershipOrigin__c
+        - npo02__LastOppAmount__c
+        - npo02__MembershipEndDate__c
+        - npo02__MembershipJoinDate__c
+        - npo02__Naming_Exclusions__c
+        - npo02__NumberOfClosedOpps__c
+        - npo02__NumberOfMembershipOpps__c
+        - npo02__OppAmount2YearsAgo__c
+        - npo02__OppAmountLastNDays__c
+        - npo02__OppAmountLastYear__c
+        - npo02__OppAmountThisYear__c
+        - npo02__OppsClosed2YearsAgo__c
+        - npo02__OppsClosedLastNDays__c
+        - npo02__OppsClosedLastYear__c
+        - npo02__OppsClosedThisYear__c
+        - npo02__SmallestAmount__c
+        - npo02__Soft_Credit_Last_Year__c
+        - npo02__Soft_Credit_This_Year__c
+        - npo02__Soft_Credit_Total__c
+        - npo02__Soft_Credit_Two_Years_Ago__c
+        - npo02__SystemHouseholdProcessor__c
+        - npo02__TotalMembershipOppAmount__c
+        - npo02__TotalOppAmount__c
+
+        # NPSP: npsp
+        - npsp__Deceased__c
+        - npsp__Do_Not_Contact__c
+        - npsp__Exclude_from_Household_Formal_Greeting__c
+        - npsp__Exclude_from_Household_Informal_Greeting__c
+        - npsp__Exclude_from_Household_Name__c
+        - npsp__First_Soft_Credit_Amount__c
+        - npsp__First_Soft_Credit_Date__c
+        - npsp__is_Address_Override__c
+        - npsp__Largest_Soft_Credit_Amount__c
+        - npsp__Largest_Soft_Credit_Date__c
+        - npsp__Last_Soft_Credit_Amount__c
+        - npsp__Last_Soft_Credit_Date__c
+        - npsp__Number_of_Soft_Credits__c
+        - npsp__Number_of_Soft_Credits_Last_N_Days__c
+        - npsp__Number_of_Soft_Credits_Last_Year__c
+        - npsp__Number_of_Soft_Credits_This_Year__c
+        - npsp__Number_of_Soft_Credits_Two_Years_Ago__c
+        - npsp__Soft_Credit_Last_N_Days__c
+
+    lookups:
+        AccountId:
+            table: Account
+
+# NPSP Relationships
+npe4__Relationship__c:
+    sf_object: npe4__Relationship__c
+    fields:
+        # Standard Fields
+
+        # NPSP: npe4
+        - npe4__SYSTEM_SystemCreated__c
+        - npe4__Description__c
+        - npsp__Related_Opportunity_Contact_Role__c
+        - npe4__Status__c
+        - npe4__Type__c
+
+    lookups:
+        npe4__Contact__c:
+            table: Contact
+        npe4__RelatedContact__c:
+            table: Contact
+        npe4__ReciprocalRelationship__c:
+            table: npe4__Relationship__c
+            after: npe4__Relationship__c
+
+# NPSP Donations
+Opportunity:
+    sf_object: Opportunity
+    fields:
+        # Standard Fields
+        - Name
+        - NextStep
+        - Type
+        - StageName
+        - LeadSource
+        - ForecastCategoryName
+        - Probability
+        - TotalOpportunityQuantity
+        - Description
+        - CloseDate
+        - Amount
+        - IsPrivate
+
+        # NPSP: System
+        - npo02__systemHouseholdContactRoleProcessor__c
+
+        # NPSP: npe01
+        - npe01__Contact_Id_for_Role__c
+        - npe01__Membership_Origin__c
+        - npe01__Member_Level__c
+        - npe01__Membership_Start_Date__c
+        - npe01__Membership_End_Date__c
+        - npe01__Do_Not_Automatically_Create_Payment__c
+
+        # NPSP: npsp
+        - npsp__Grant_Requirements_Website__c
+        - npsp__Primary_Contact_Campaign_Member_Status__c
+        - npsp__Notification_Recipient_Name__c
+        - npsp__Honoree_Name__c
+        - npsp__Matching_Gift_Employer__c
+        - npsp__Grant_Contract_Number__c
+        - npsp__Notification_Recipient_Information__c
+        - npsp__Grant_Program_Area_s__c
+        - npsp__In_Kind_Description__c
+        - npsp__Tribute_Type__c
+        - npsp__Notification_Preference__c
+        - npsp__Matching_Gift_Status__c
+        - npsp__In_Kind_Type__c
+        - npsp__Acknowledgment_Status__c
+        - npsp__Gift_Strategy__c
+        - npsp__Recurring_Donation_Installment_Number__c
+        - npsp__Notification_Message__c
+        - npsp__Closed_Lost_Reason__c
+        - npsp__Grant_Period_Start_Date__c
+        - npsp__Grant_Period_End_Date__c
+        - npsp__Grant_Contract_Date__c
+        - npsp__Acknowledgment_Date__c
+        - npsp__Qualified_Date__c
+        - npsp__Ask_Date__c
+        - npsp__Fair_Market_Value__c
+        - npsp__Requested_Amount__c
+        - npsp__DisableContactRoleAutomation__c
+        - npsp__In_Kind_Donor_Declared_Value__c
+        - npsp__Is_Grant_Renewal__c
+
+    lookups:
+        AccountId:
+            table: Account
+        npsp__Primary_Contact__c:
+            table: Contact
+        npsp__Honoree_Contact__c:
+            table: Contact
+        npsp__Notification_Recipient_Contact__c:
+            table: Contact
+
+OpportunityContactRole:
+    sf_object: OpportunityContactRole
+    fields:
+        # Standard Fields
+        - Role
+        - IsPrimary
+
+    lookups:
+        ContactId:
+            table: Contact
+        OpportunityId:
+            table: Opportunity
+
+# Programs
+pmdm__Program__c:
+    sf_object: pmdm__Program__c
+    fields:
+        # Standard Fields
+        - Name
+
+        # Custom Fields
+        - pmdm__Description__c
+        - pmdm__EndDate__c
+        - pmdm__ProgramIssueArea__c
+        - pmdm__StartDate__c
+        - pmdm__Status__c
+        - pmdm__ShortSummary__c
+        - pmdm__TargetPopulation__c
+
+pmdm__ProgramCohort__c:
+    sf_object: pmdm__ProgramCohort__c
+    fields:
+        # Standard Fields
+        - Name
+
+        # Custom Fields
+        - pmdm__Description__c
+        - pmdm__EndDate__c
+        - pmdm__StartDate__c
+        - pmdm__Status__c
+
+    lookups:
+        pmdm__Program__c:
+            table: pmdm__Program__c
+
+pmdm__ProgramEngagement__c:
+    sf_object: pmdm__ProgramEngagement__c
+    fields:
+        # Standard Fields
+        - Name
+
+        # Custom Fields
+        - pmdm__ApplicationDate__c
+        - pmdm__AutoName_Override__c
+        - pmdm__EndDate__c
+        - pmdm__Role__c
+        - pmdm__Stage__c
+        - pmdm__StartDate__c
+
+    lookups:
+        pmdm__Account__c:
+            table: Account
+        pmdm__Contact__c:
+            table: Contact
+        pmdm__Program__c:
+            table: pmdm__Program__c
+        pmdm__ProgramCohort__c:
+            table: pmdm__ProgramCohort__c
+
+pmdm__Service__c:
+    sf_object: pmdm__Service__c
+    fields:
+        # Standard Fields
+        - Name
+
+        # Custom Fields
+        - pmdm__Description__c
+        - pmdm__Status__c
+        - pmdm__UnitOfMeasurement__c
+
+    lookups:
+        pmdm__Program__c:
+            table: pmdm__Program__c
+
+pmdm__ServiceSchedule__c:
+    sf_object: pmdm__ServiceSchedule__c
+    fields:
+        # Standard Fields
+        - Name
+
+        # Custom Fields
+        - pmdm__AllDay__c
+        - pmdm__CreateServiceSessionRecords__c
+        - pmdm__DaysOfWeek__c
+        - pmdm__FirstSessionEnd__c
+        - pmdm__FirstSessionStart__c
+        - pmdm__Frequency__c
+        - pmdm__Interval__c
+        - pmdm__NumberOfServiceSessions__c
+        - pmdm__ParticipantCapacity__c
+        - pmdm__ServiceScheduleEndDate__c
+        - pmdm__ServiceScheduleEnds__c
+
+    lookups:
+        pmdm__PrimaryServiceProvider__c:
+            table: Contact
+        pmdm__OtherServiceProvider__c:
+            table: Contact
+        pmdm__Service__c:
+            table: pmdm__Service__c
+
+pmdm__ServiceSession__c:
+    sf_object: pmdm__ServiceSession__c
+    fields:
+        # Standard Fields
+        - Name
+
+        # Custom Fields
+        - pmdm__SessionEnd__c
+        - pmdm__SessionStart__c
+        - pmdm__Status__c
+
+    lookups:
+        pmdm__PrimaryServiceProvider__c:
+            table: Contact
+        pmdm__OtherServiceProvider__c:
+            table: Contact
+        pmdm__ServiceSchedule__c:
+            table: pmdm__ServiceSchedule__c
+
+pmdm__ServiceParticipant__c:
+    sf_object: pmdm__ServiceParticipant__c
+    fields:
+        # Standard Fields
+        - Name
+
+        # Custom Fields
+        - pmdm__SignUpDate__c
+        - pmdm__Status__c
+
+    lookups:
+        pmdm__Contact__c:
+            table: Contact
+        pmdm__ProgramEngagement__c:
+            table: pmdm__ProgramEngagement__c
+        pmdm__Service__c:
+            table: pmdm__Service__c
+        pmdm__ServiceSchedule__c:
+            table: pmdm__erviceSchedule__c
+
+pmdm__ServiceDelivery__c:
+    sf_object: pmdm__ServiceDelivery__c
+    fields:
+        # Standard Fields
+        - Name
+
+        # Custom Fields
+        - pmdm__AutonameOverride__c
+        - pmdm__DeliveryDate__c
+        - pmdm__Quantity__c
+
+    lookups:
+        pmdm__Service__c:
+            table: pmdm__Service__c
+        pmdm__Account__c:
+            table: Account
+        pmdm__Contact__c:
+            table: Contact
+        pmdm__ProgramEngagement__c:
+            table: pmdm__ProgramEngagement__c
+        pmdm__Service_Provider__c:
+            table: Contact
+        pmdm__ServiceSession__c:
+            table: pmdm__ServiceSession__c

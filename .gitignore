@@ -1,0 +1,28 @@
+# Salesforce / SFDX / CCI
+.cci
+.sfdx
+/src.orig
+/src
+
+# Python
+*.pyc
+__pycache__
+
+# Robot Framework results
+robot/
+
+# Editors
+*.sublime-project
+*.sublime-workspace
+.vscode
+.idea
+.project
+.settings
+
+# Misc
+.DS_Store
+
+# Draft/Secret - not yet ready to push
+assets/scratchOrginfo.md
+yamlRecipes/
+scripts/
