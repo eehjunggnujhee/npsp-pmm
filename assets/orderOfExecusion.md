@@ -14,14 +14,12 @@
 # CCI Import Scratch Org
 Scratch org will be the target Org.
 
-```cci org import npsppmmscratch scratch```
-```cci task run load_dataset -o drop_missing_schema True --org [targetOrgAlias]```
-
+```cci org import [sfdxAlis4ScratchOrg] [newCCIAlias4ScratchOrg]```
 # Push Data
 `cci task run load_dataset -o drop_missing_schema True --org [targetOrgAlias]`
 
 # Delete data from targeted org
-`cci task run delete_data --objects [obj1],[obj2] --org [targetOrgAlias]`
+`cci task run delete_data --objects [obj1],[obj2] --org [targetOrgAlias]` 
 
 # The Order of Manipulating mapping.yml and sample.sql from PMM repository
 1. Download `mapping.yml` and `sample.sql` from [PMM repository](https://github.com/SalesforceFoundation/PMM/tree/master/datasets) and add them to your project directory.
