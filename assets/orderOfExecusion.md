@@ -4,7 +4,7 @@
 3. Recurring Donations 3.20: `sfdx force:package:install -p 04t1E000000japA -u [targetOrgAlias]`
 4. Relationships 3.11: `sfdx force:package:install -p 04t2E000003ZS9y -u [targetOrgAlias]`
 5. Affiiation 3.9: `sfdx force:package:install -p 04t2E000003kXEE -u [targetOrgAlias]`
-6. Deploy Account and Opportunity Record Type Metadata [NPSP Repository](ahttps://github.com/SalesforceFoundation/NPSP/tree/master/unpackaged/pre)
+6. Deploy Account and Opportunity Record Type Metadata [NPSP Repository](https://github.com/SalesforceFoundation/NPSP/tree/master/unpackaged/pre)
 7. NPSP : `sfdx force:package:install -p 04t1Y000000ksKG -u [targetOrgAlias]`
 
 # PMM V 1.20
