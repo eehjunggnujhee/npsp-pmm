@@ -11,6 +11,6 @@ To work on this project in a scratch org:
 3. Run `cci org browser dev` to open the org in your browser.
 
 
-|😃  <span style="color:blue">Outbound Fund Module</span> 🙂 | 😃  <span style="color:blue">Program Management Module</span> 🙂 |
+|😃  <span style="color:blue">Outbound Funds Module</span> 🙂 | 😃  <span style="color:blue">Program Management Module</span> 🙂 |
 |:----------------------------|:----------------------------|
-|![Outbound Fund Entity Relationship Diagram](assets/OFM_ERD.png)|![PMM Entity Relationship Diagram](assets/PMM-ERD.png)|
+|![Outbound Funds Entity Relationship Diagram](assets/OFM_ERD.png)|![PMM Entity Relationship Diagram](assets/PMM-ERD.png)|
