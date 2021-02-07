@@ -103,5 +103,5 @@ orgs:
     scratch:
         npsppmmscratch:
             config_file: orgs/npsppmmscratch.json
-            days: 3
+            days: 30
             namespaced: True

@@ -1,0 +1,91 @@
+# Account
+Accounts:
+    sf_object: Account
+    fields:
+     - Name
+# Contact
+Contacts:
+    sf_object: Contact
+    fields:
+        - Salutation
+        - FirstName
+        - LastName
+        - Email
+        - Phone
+        - Title
+    lookups:
+        AccountId:
+            table: Account
+
+outfunds__Funding_Program__c:
+    sf_object: outfunds__Funding_Program__c
+    fields:
+        - Name
+        - outfunds__Description__c
+        - outfunds__End_Date__c
+        - outfunds__Start_Date__c
+        - outfunds__Status__c
+        - outfunds__Total_Program_Amount__c
+
+outfunds__Funding_Request__c:
+    sf_object: outfunds__Funding_Request__c
+    fields:
+        - Name
+        - outfunds__Application_Date__c
+        - outfunds__Awarded_Amount__c
+        - outfunds__Awarded_Date__c
+        - outfunds__Close_Date__c
+        - outfunds__Closed_reason__c
+        - outfunds__Geographical_Area_Served__c
+        - outfunds__Population_Served__c
+        - outfunds__Recommended_Amount__c
+        - outfunds__Requested_Amount__c
+        - outfunds__Requested_For__c
+        - outfunds__Status__c
+        - outfunds__Term_End_Date__c
+        - outfunds__Term_Start_Date__c
+        - outfunds__Terms__c
+    lookups:
+        outfunds__Applying_Contact__c:
+            key_field: outfunds__applying_contact__c
+            table: Contact
+        outfunds__Applying_Organization__c:
+            key_field: outfunds__applying_organization__c
+            table: Account
+        outfunds__FundingProgram__c:
+            key_field: outfunds__funding_program__c
+            table: outfunds__Funding_Program__c
+
+outfunds__Disbursement__c:
+    sf_object: outfunds__Disbursement__c
+    fields:
+        - outfunds__Amount__c
+        - outfunds__Disbursement_Date__c
+        - outfunds__Disbursement_Method__c
+        - outfunds__Scheduled_Date__c
+        - outfunds__Status__c
+        - outfunds__Type__c
+    lookups:
+        outfunds__Funding_Request__c:
+            key_field: outfunds__funding_request__c
+            table: outfunds__Funding_Request__c
+
+outfunds__Requirement__c:
+    sf_object: outfunds__Requirement__c
+    fields:
+        - Name
+        - outfunds__Completed_Date__c
+        - outfunds__Due_Date__c
+        - outfunds__Requirements__c
+        - outfunds__Status__c
+        - outfunds__Type__c
+    lookups:
+        outfunds__Disbursement__c:
+            key_field: outfunds__Disbursement__c
+            table: outfunds__Disbursement__c
+        outfunds__Funding_Request__c:
+            key_field: outfunds__Funding_Request__c
+            table: outfunds__Funding_Request__c
+        outfunds__Primary_Contact__c:
+            key_field: outfunds__Primary_Contact__c
+            table: Contact
