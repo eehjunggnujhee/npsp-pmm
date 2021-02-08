@@ -306,9 +306,12 @@
             fake.date_between:
               start_date: -5m
               end_date: +5m
-
+              
           pmdm__Status__c:
-
+            random_choice:
+              - Waitlisted
+              - Enrolled
+              - Withdrawn
               # Custom Lookup Fields
           pmdm__Contact__c:
             reference: Contact
