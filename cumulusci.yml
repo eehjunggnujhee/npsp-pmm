@@ -32,51 +32,69 @@ tasks:
     generate_sf_accounts:
         class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
         options:
-            generator_yaml: yamlRecipes/Account.recipe.yml
+            generator_yaml: examples/salesforce/Account.recipe.yml
             num_records: 100
             num_records_tablename: Account
     generate_sf_contacts:
         class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
         options:
-            generator_yaml: yamlRecipes/salesforce/Contact.recipe.yml
+            generator_yaml: examples/salesforce/Contact.recipe.yml
             num_records: 100
             num_records_tablename: Contact
     generate_sf_opportunities:
         class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
         options:
-            generator_yaml: yamlRecipes/salesforce/Opportunity.recipe.yml
+            generator_yaml: examples/salesforce/Opportunity.recipe.yml
             num_records: 100
             num_records_tablename: Opportunity
     generate_npsp_accounts:
         class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
         options:
-            generator_yaml: yamlRecipes/Account_npsp.recipe.yml
+            generator_yaml: examples/npsp/Account_npsp.recipe.yml
             num_records: 100
             num_records_tablename: Account
     generate_npsp_contacts:
         class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
         options:
-            generator_yaml: yamlRecipes/Contact_npsp.recipe.yml
+            generator_yaml: examples/npsp/Contact_npsp.recipe.yml
             num_records: 100
             num_records_tablename: Contact
     generate_npsp_opportunities:
         class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
         options:
-            generator_yaml: yamlRecipes/Opportunity_npsp.recipe.yml
+            generator_yaml: examples/npsp/Opportunity_npsp.recipe.yml
             num_records: 100
             num_records_tablename: Opportunity
     generate_opportunity_contact_roles:
         class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
         options:
-            generator_yaml: yamlRecipes/OpportunityContactRole.recipe.yml
+            generator_yaml: examples/salesforce/OpportunityContactRole.recipe.yml
             num_records: 100
             num_records_tablename: Opportunity
     generate_opportunities_and_contacts:
         class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
         options:
-            generator_yaml: yamlRecipes/OpportunityAndContact.recipe.yml
+            generator_yaml: examples/salesforce/OpportunityAndContact.recipe.yml
             num_records: 100
             num_records_tablename: Opportunity
+    generate_relationships:
+        class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
+        options:
+            generator_yaml: examples/npsp/ContactandRelationship_npsp.recipe.yml
+            num_records: 100
+            num_records_tablename: Contact
+    generate_programs:
+        class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
+        options:
+            generator_yaml: examples/pmm/pmm_1_program.recipe.yml 
+            num_records: 100
+            num_records_tablename: pmdm__Program__c
+    generate_services:
+        class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
+        options:
+            generator_yaml: examples/pmm/pmm_1_program-service.recipe.yml 
+            num_records: 100
+            num_records_tablename: pmdm__Service__c
 
 flows:
     test_everything:
