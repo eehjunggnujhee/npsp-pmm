@@ -9,13 +9,15 @@
 
 - include_file: Account_npsp_extend.recipe.yml # along with included-files
 
-- object: Contact
+- object: Contact  #include standard and NPSP fields
   nickname: Contact1
   fields:
     AccountId:
       reference: A Household
-    FirstName: <<fake.first_name>>
-    LastName: <<fake.last_name>>
+    FirstName: 
+      fake: first_name
+    LastName: 
+      fake: last_name
     npe01__AlternateEmail__c:
       fake: email
     npe01__HomeEmail__c:
@@ -244,7 +246,7 @@
     EmailBouncedReason:
       fake.text:
         max_nb_chars: 100
-    EmailBouncedDate: <<fake.date>>T<<fake.time>>Z
+    EmailBouncedDate: ${{fake.date_time}}
     CleanStatus:
       random_choice:
         - Matched
@@ -256,6 +258,7 @@
         # - SelectMatch  # causes problems
         - Skipped
         # NPSP Relationships
+
   friends:
   - object: npe4__Relationship__c
     nickname: Relationship 
@@ -298,13 +301,15 @@
       npe4__Contact__c:
           reference: Contact
 
-      # Master-Detail
+      # Hierarchy
       npe4__RelatedContact__c:
           - object: Contact
             nickname: Contact2
             fields:
-              FirstName: <<fake.first_name>>
-              LastName: <<fake.last_name>>
+              FirstName: 
+                fake: first_name
+              LastName: 
+                fake: last_name
 
 # Automated by NPSP setting
  #     npe4__ReciprocalRelationship__c:

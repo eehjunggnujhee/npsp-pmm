@@ -21,7 +21,7 @@
 
 # import account and contact recipes
 - include_file: ../npsp/Account_npsp_extend.recipe.yml # along with included-files
-
+- include_file: ../npsp/Contact_npsp.recipe.yml
 
 # Programs
 - object: pmdm__Program__c
@@ -181,7 +181,7 @@
     nickname: Service Schedule
     fields:
           # Standard Fields
-      Name: ${{pmdm__ProgramEngagement__c.Name}} <<fake.date>> 
+      Name: ${{pmdm__ProgramEngagement__c.Name}} ${{fake.date}} 
 
           # Custom Fields
       pmdm__AllDay__c:
@@ -253,7 +253,7 @@
 
       pmdm__ServiceScheduleEnds__c:
         random_choice:
-          - ${{On}}
+          - ${{'On'}}
           - After
 
           # Custom Lookup Fields
@@ -271,12 +271,12 @@
       nickname: Service Session
       fields: 
             # Standard Fields
-        Name: ${{Contact.FirstName}} ${{Contact.LastName}} ${{pmdm__Program__c}} <<fake.date>>
+        Name: ${{Contact.FirstName}} ${{Contact.LastName}} ${{pmdm__Program__c}} ${{fake.date}}
 
             # Custom Fields
-        pmdm__SessionEnd__c: <<fake.date>>T<<fake.time>>Z
+        pmdm__SessionEnd__c: ${{fake.date_time}}
 
-        pmdm__SessionStart__c: <<fake.date>>T<<fake.time>>Z
+        pmdm__SessionStart__c: ${{fake.date_time}}
 
         pmdm__Status__c:
           random_choice:
@@ -328,7 +328,7 @@
     nickname: Service Delivery 
     fields:
           # Standard Fields
-      Name: ${{Contact.FirstName}} ${{Contact.LastName}} <<fake.date>> Delivery
+      Name: ${{Contact.FirstName}} ${{Contact.LastName}} ${{fake.date}} Delivery
 
           # Custom Fields
       pmdm__AutonameOverride__c:
