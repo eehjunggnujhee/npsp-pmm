@@ -92,9 +92,15 @@ tasks:
     generate_services:
         class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
         options:
-            generator_yaml: examples/pmm/pmm_1_program-service.recipe.yml 
+            generator_yaml: examples/pmm/pmm_1_service.recipe.yml 
             num_records: 100
             num_records_tablename: pmdm__Service__c
+    generate_programs_services:
+        class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
+        options:
+            generator_yaml: examples/pmm/pmm_1_program-service.recipe.yml 
+            num_records: 100
+            num_records_tablename: pmdm__Program__c
 
 flows:
     test_everything:

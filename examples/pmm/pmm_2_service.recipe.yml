@@ -16,12 +16,12 @@
 
 # Run this like this:
 
-# cci task run generate_and_load_from_yaml -o generator_yaml examples/pmm/pmm_2_service.recipe.yml --num_records 300 --num_records_tablename pmdm__Service__c --org qa
+# cci task run generate_and_load_from_yaml --generator_yaml examples/pmm/pmm_2_service.recipe.yml --num_records 300 --num_records_tablename pmdm__Service__c --org qa
 
-# import account and contact recipes
-- include_file: ../npsp/ContactandRelationship_npsp.recipe.yml # along with included-files
+# import account, contact and program recipes
+- include_file: pmm_1_program.recipe.yml # along with included-files
 
-# Service
+  # Service
 - object: pmdm__Service__c
   just_once: true
   nickname: Service
@@ -58,11 +58,11 @@
     nickname: Service Schedule
     fields:
           # Standard Fields
-      Name: ${{pmdm__ProgramEngagement__c.Name}} <<fake.date>> 
+      Name: ${{pmdm__ProgramEngagement__c.Name}} ${{fake.date}} 
 
           # Custom Fields
       pmdm__AllDay__c:
-        render_boolean:
+        random_choice:
           - choice:
               probability: 50%
               pick: true
@@ -71,7 +71,7 @@
               pick: false
 
       pmdm__CreateServiceSessionRecords__c: # TRUE -trigger a creation of service session record
-        render_boolean:
+        random_choice:
           - choice:
               probability: 50%
               pick: true
@@ -80,24 +80,26 @@
               pick: false
 
       pmdm__DaysOfWeek__c:
-        random_choice:  # how to set up multi-picklist?
-          - Sun
-          - Mon
-          - Tue
-          - Wed
-          - Thu
-          - Fri
-          - Sat
+        random_choice:  # how to set up multi-picklist? # restriced API name
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
 
-      pmdm__FirstSessionEnd__c:
-        fake.date_time_between:
-          start_date: now
-          end_date: +2y
+#      pmdm__FirstSessionEnd__c:   -------- getting error!!
+#        datetime:
+#            year: 2020
+#            month: 04
+#            day: 25
+#            hour: 0
+#            minute: 0
+#            second: 0
+#            microsecond: 0
 
-      pmdm__FirstSessionStart__c:
-        fake.date_time_between:
-          start_date: -1y
-          end_date: +1y
+#      pmdm__FirstSessionStart__c: now
 
       pmdm__Frequency__c:
         random_choice:
@@ -121,11 +123,14 @@
           min: 1
           max: 10
 
-      pmdm__ServiceScheduleEndDate__c: <<fake.date>>
+      pmdm__ServiceScheduleEndDate__c:
+        fake.date_between:
+          start_date: -1m
+          end_date: +1m
 
       pmdm__ServiceScheduleEnds__c:
         random_choice:
-          - ${{'On'}}
+          - ${{'On'}}  # 'On' is a reserved word for boolean 1, or True
           - After
 
           # Custom Lookup Fields
@@ -139,18 +144,22 @@
     # Service Session
     friends:
     - object: pmdm__ServiceSession__c
-      count: 6
+      count: 3
       nickname: Service Session
-      fields:
+      fields: 
             # Standard Fields
-        Name:
+        Name: ${{Contact.FirstName}} ${{Contact.LastName}} ${{pmdm__Program__c}} ${{fake.date}}
 
             # Custom Fields
-        pmdm__SessionEnd__c:
+        pmdm__SessionEnd__c: <<fake.date>>T<<fake.time>>Z
 
-        pmdm__SessionStart__c:
+        pmdm__SessionStart__c: <<fake.date>>T<<fake.time>>Z
 
         pmdm__Status__c:
+          random_choice:
+            - Pending
+            - Complete
+            - Canceled
 
             # Custom Lookup Fields
         pmdm__PrimaryServiceProvider__c:
@@ -174,18 +183,21 @@
             fake.date_between:
               start_date: -5m
               end_date: +5m
-
+              
           pmdm__Status__c:
-
+            random_choice:
+              - Waitlisted
+              - Enrolled
+              - Withdrawn
               # Custom Lookup Fields
           pmdm__Contact__c:
             reference: Contact
           pmdm__ProgramEngagement__c:
-            reference: ProgramEngagement__c
+            reference: Program Engagement
           pmdm__Service__c:
-            reference: Service__c
+            reference: Service
           pmdm__ServiceSchedule__c:
-            reference: ServiceSchedule__c
+            reference: Service Schedule
 
 # ServiceDelivery__c
   - object: pmdm__ServiceDelivery__c
@@ -193,30 +205,32 @@
     nickname: Service Delivery 
     fields:
           # Standard Fields
-      Name:
+      Name: ${{Contact.FirstName}} ${{Contact.LastName}} ${{fake.date}} Delivery
 
           # Custom Fields
       pmdm__AutonameOverride__c:
-        render_boolean:
+        random_choice:
           - choice:
               probability: 50%
               pick: true
           - choice:
               probability: 50%
               pick: false
-      pmdm__DeliveryDate__c: <<fake.date>>
+      pmdm__DeliveryDate__c: ${{fake.date}}
       pmdm__Quantity__c:
         random_number:
-          min: 0.5
+          min: 1
           max: 2
 
           # Custom Lookup Fields
       pmdm__Service__c:
         reference: Service
       pmdm__Account__c:
-        reference: Account
+        reference: Household 
       pmdm__Contact__c:
         reference: Contact
+#      pmdm__Contact__c:
+#        reference: ----------------- How can I connect primary contact from Account?
       pmdm__ProgramEngagement__c:
         reference: Program Engagement
       pmdm__Service_Provider__c:

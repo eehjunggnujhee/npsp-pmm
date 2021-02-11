@@ -17,7 +17,7 @@
 
 # Run this like this:
 
-# cci task run generate_and_load_from_yaml -o generator_yaml examples/pmm/pmm_1_program-service.recipe.yml --num_records 300 --num_records_tablename Program --org qa
+# cci task run generate_and_load_from_yaml -o generator_yaml examples/pmm/pmm_1_program-service.recipe.yml --num_records 300 --num_records_tablename pmdm__Program__c --org qa
 
 # import account and contact recipes
 - include_file: ../npsp/Account_npsp_extend.recipe.yml # along with included-files
@@ -137,9 +137,9 @@
             start_date: -1m
             end_date: today
         pmdm__Account__c:
-            reference: Account  # npsp Household | standard Account
-        #pmdm__Contact__c:
-        #    reference: Contact # for anonymounse client, Don not fill in.
+            reference: Household  # npsp Household | standard Account
+        pmdm__Contact__c:
+            reference: Contact # for anonymounse client, Don not fill in.
         pmdm__Program__c:
             reference: Program
         pmdm__ProgramCohort__c:
@@ -253,7 +253,7 @@
 
       pmdm__ServiceScheduleEnds__c:
         random_choice:
-          - ${{'On'}}
+          - ${{'On'}}  # 'On' is a reserved word for boolean 1, or True
           - After
 
           # Custom Lookup Fields
@@ -267,16 +267,16 @@
     # Service Session
     friends:
     - object: pmdm__ServiceSession__c
-      count: 6
+      count: 3
       nickname: Service Session
       fields: 
             # Standard Fields
         Name: ${{Contact.FirstName}} ${{Contact.LastName}} ${{pmdm__Program__c}} ${{fake.date}}
 
             # Custom Fields
-        pmdm__SessionEnd__c: ${{fake.date_time}}
+        pmdm__SessionEnd__c: <<fake.date>>T<<fake.time>>Z
 
-        pmdm__SessionStart__c: ${{fake.date_time}}
+        pmdm__SessionStart__c: <<fake.date>>T<<fake.time>>Z
 
         pmdm__Status__c:
           random_choice:
@@ -339,7 +339,7 @@
           - choice:
               probability: 50%
               pick: false
-      pmdm__DeliveryDate__c: <<fake.date>>
+      pmdm__DeliveryDate__c: ${{fake.date}}
       pmdm__Quantity__c:
         random_number:
           min: 1
@@ -349,7 +349,9 @@
       pmdm__Service__c:
         reference: Service
       pmdm__Account__c:
-        reference: Account
+        reference: Household 
+      pmdm__Contact__c:
+        reference: Contact
 #      pmdm__Contact__c:
 #        reference: ----------------- How can I connect primary contact from Account?
       pmdm__ProgramEngagement__c:
