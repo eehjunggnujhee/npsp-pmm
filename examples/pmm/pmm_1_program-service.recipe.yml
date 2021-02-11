@@ -150,7 +150,7 @@
   nickname: Service
   fields:
         # Standard Fields
-    Name:
+    Name: ${{pmdm__Program__c.Name}} Service
 
         # Custom Fields
     pmdm__Description__c:
